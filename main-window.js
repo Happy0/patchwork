@@ -85,7 +85,8 @@ module.exports = function (config) {
         dropTab('More', [
           getSubscribedChannelMenu,
           ['Gatherings', '/gatherings'],
-          ['Extended Network', '/all']
+          ['Extended Network', '/all'],
+          ['Chess', '/chess']
         ])
       ]),
       h('span.appTitle', [
