@@ -2,7 +2,7 @@
   "name": "ssb-ponchowonky",
   "productName": "ponchowonky",
   "repository": "git@github.com:soapdog/patchwork.git",
-  "version": "5.6.2",
+  "version": "5.6.3",
   "description": "A decentralized messaging and sharing app built on top of Secure Scuttlebutt (SSB).",
   "main": "index.js",
   "scripts": {
@@ -84,6 +84,7 @@
     "secret-stack": "^6.3.1",
     "sorted-array-functions": "^1.2.0",
     "spacetime": "^6.4.1",
+    "ssb-avatar": "^0.2.0",
     "ssb-backlinks": "^1.0.0",
     "ssb-blob-files": "^1.2.0",
     "ssb-blobs": "^2.0.1",
