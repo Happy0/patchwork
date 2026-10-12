@@ -88,6 +88,8 @@
     "ssb-blob-files": "^1.2.0",
     "ssb-blobs": "^2.0.1",
     "ssb-book-schema": "^1.0.3",
+    "ssb-chess-data-access": "^2.1.4",
+    "ssb-chess-mithril": "2.0.9",
     "ssb-client": "^4.9.0",
     "ssb-config": "^3.4.4",
     "ssb-conn": "~1.0.0",
@@ -121,9 +123,7 @@
     "ssb-ws": "^6.2.3",
     "suggest-box": "github:mmckegg/suggest-box#scroll-selection-into-view",
     "text-node-searcher": "^1.1.1",
-    "xtend": "^4.0.2",
-    "ssb-chess-data-access": "2.1.4",
-    "ssb-chess-mithril": "2.0.7"
+    "xtend": "^4.0.2"
   },
   "devDependencies": {
     "@electron/notarize": "^3.1.2",
