@@ -1,5 +1,6 @@
 const electron = require("electron");
 const { nativeImage } = require("electron");
+const { Notification } = require("electron");
 const openWindow = require("./lib/window.js");
 
 const Path = require("path");
@@ -255,6 +256,44 @@ electron.app.on("ready", () => {
       windowsForIdentity.background.close();
     }
   };
+
+  // Notification event
+  electron.ipcMain.on("send-notification", (ev, notif) => {
+    console.log(`notif`, JSON.stringify(notif, null, 2));
+    const notification = new Notification({
+      title: notif.title,
+      body: notif.message,
+      icon: notif.icon,
+    });
+
+    notification.addListener("error", (ev) => {
+      console.log(`error notificagtion`, ev);
+    });
+
+    notification.addListener("failed", (ev) => {
+      console.log(`fail notificagtion`, ev);
+    });
+
+    notification.addListener("click", (ev) => {
+      console.log("notification clicked.");
+      console.log("ev", ev);
+      const id = windows.keys().next().value;
+      const url = notif.open;
+      const browserWindow = windows.get(id)?.renderer;
+      console.log("browser window for open url", browserWindow);
+      if (ssbUri.isClassicMessageSSBURI(url)) {
+        const msgid = ssbUri.toMessageSigil(url);
+        browserWindow.webContents.send("navigate-to", msgid);
+      } else if (ssbUri.isFeedSSBURI(url)) {
+        const feedid = ssbUri.toFeedSigil(url);
+        browserWindow.webContents.send("navigate-to", feedid);
+      }
+    });
+
+    notification.show();
+
+    console.dir(notification);
+  });
 
   /*
 == MENU STUFF ===========================================================================================================
