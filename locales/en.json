@@ -450,5 +450,7 @@
 	"Tools": "Tools",
 	"Inactive Accounts": "Inactive Accounts",
 	"List Inactive Accounts": "List Inactive Accounts",
-	"Chess": "Chess"
+	"Chess": "Chess",
+	"Notifications": "Notifications",
+	"Display notifications for likes, messages, and replies.": "Display notifications for likes, messages, and replies."
 }

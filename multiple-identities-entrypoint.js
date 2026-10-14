@@ -32,6 +32,9 @@ const {
   openAnnouncementsWindow,
 } = require("./lib/app-lifecycle.js");
 const Identities = require("./lib/identities.js");
+const preferences = require("./lib/preferences.js");
+
+preferences.initialize();
 
 if (process.defaultApp) {
   if (process.argv.length >= 2) {
@@ -259,40 +262,44 @@ electron.app.on("ready", () => {
 
   // Notification event
   electron.ipcMain.on("send-notification", (ev, notif) => {
-    console.log(`notif`, JSON.stringify(notif, null, 2));
-    const notification = new Notification({
-      title: notif.title,
-      body: notif.message,
-      icon: notif.icon,
-    });
+    const notificationsEnabled = preferences.get("notificationsEnabled", true);
 
-    notification.addListener("error", (ev) => {
-      console.log(`error notificagtion`, ev);
-    });
+    if (notificationsEnabled) {
+      // console.log(`notif`, JSON.stringify(notif, null, 2));
+      const notification = new Notification({
+        title: notif.title,
+        body: notif.message,
+        icon: notif.icon,
+      });
 
-    notification.addListener("failed", (ev) => {
-      console.log(`fail notificagtion`, ev);
-    });
+      notification.addListener("error", (ev) => {
+        console.log(`error notificagtion`, ev);
+      });
 
-    notification.addListener("click", (ev) => {
-      console.log("notification clicked.");
-      console.log("ev", ev);
-      const id = windows.keys().next().value;
-      const url = notif.open;
-      const browserWindow = windows.get(id)?.renderer;
-      console.log("browser window for open url", browserWindow);
-      if (ssbUri.isClassicMessageSSBURI(url)) {
-        const msgid = ssbUri.toMessageSigil(url);
-        browserWindow.webContents.send("navigate-to", msgid);
-      } else if (ssbUri.isFeedSSBURI(url)) {
-        const feedid = ssbUri.toFeedSigil(url);
-        browserWindow.webContents.send("navigate-to", feedid);
-      }
-    });
+      notification.addListener("failed", (ev) => {
+        console.log(`fail notificagtion`, ev);
+      });
 
-    notification.show();
+      notification.addListener("click", (ev) => {
+        console.log("notification clicked.");
+        console.log("ev", ev);
+        const id = windows.keys().next().value;
+        const url = notif.open;
+        const browserWindow = windows.get(id)?.renderer;
+        console.log("browser window for open url", browserWindow);
+        if (ssbUri.isClassicMessageSSBURI(url)) {
+          const msgid = ssbUri.toMessageSigil(url);
+          browserWindow.webContents.send("navigate-to", msgid);
+        } else if (ssbUri.isFeedSSBURI(url)) {
+          const feedid = ssbUri.toFeedSigil(url);
+          browserWindow.webContents.send("navigate-to", feedid);
+        }
+      });
 
-    console.dir(notification);
+      notification.show();
+
+      console.dir(notification);
+    }
   });
 
   /*
