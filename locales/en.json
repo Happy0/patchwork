@@ -464,5 +464,6 @@
 	"Search terms": "Search terms",
 	"API Keys": "API Keys",
 	"OMDB API Key (used for movie search).": "OMDB API Key (used for movie search).",
-	"Import Movie": "Import Movie"
+	"Import Movie": "Import Movie",
+	"Review Movie": "Review Movie"
 }
