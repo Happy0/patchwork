@@ -452,5 +452,18 @@
 	"List Inactive Accounts": "List Inactive Accounts",
 	"Chess": "Chess",
 	"Notifications": "Notifications",
-	"Display notifications for likes, messages, and replies.": "Display notifications for likes, messages, and replies."
+	"Display notifications for likes, messages, and replies.": "Display notifications for likes, messages, and replies.",
+	"Movies": "Movies",
+	"Entertainment": "Entertainment",
+	"Add New Movie": "Add New Movie",
+	"Edit Movie": "Edit Movie",
+	"Title": "Title",
+	"Director": "Director",
+	"Plot": "Plot",
+	"Movie Search": "Movie Search",
+	"Search terms": "Search terms",
+	"API Keys": "API Keys",
+	"OMDB API Key (used for movie search).": "OMDB API Key (used for movie search).",
+	"Import Movie": "Import Movie",
+	"Review Movie": "Review Movie"
 }
