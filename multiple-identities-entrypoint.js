@@ -286,6 +286,7 @@ electron.app.on("ready", () => {
         const browserWindow = windows.get(windowId)?.renderer;
 
         const url = notif.open;
+        const anchor = notif.anchor;
 
         console.log("browser window for open url", browserWindow);
         if (ssbUri.isClassicMessageSSBURI(url)) {
@@ -295,7 +296,7 @@ electron.app.on("ready", () => {
           const feedid = ssbUri.toFeedSigil(url);
           browserWindow.webContents.send("navigate-to", feedid);
         } else {
-          browserWindow.webContents.send("navigate-to", url);
+          browserWindow.webContents.send("navigate-to", url, anchor);
         }
       });
 
